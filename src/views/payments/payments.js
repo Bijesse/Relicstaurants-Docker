@@ -65,10 +65,10 @@ const Payments = () => {
             },
           ]}
         >
-          <Select defaultValue={"visa"} label="card" style={{ width: '200px' }}>
+          <Select defaultValue={'visa'} label="card" style={{ width: '200px' }}>
             <Option value="visa">Visa</Option>
             <Option value="mastercard">MasterCard</Option>
-            <Option value="citybank">CityBank</Option>
+            <Option value="amex">American Express</Option>
           </Select>
         </Form.Item>
         <Form.Item
