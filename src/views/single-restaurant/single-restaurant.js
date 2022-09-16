@@ -53,7 +53,9 @@ const SingleRestaurant = () => {
     {
       title: 'Add to cart',
       render: (clickedRow) => (
-        <Button id="menuItem" onClick={() => handleAddToCart(clickedRow)}>Add</Button>
+        <Button id="menuItem" onClick={() => handleAddToCart(clickedRow)}>
+          Add
+        </Button>
       ),
     },
   ];
