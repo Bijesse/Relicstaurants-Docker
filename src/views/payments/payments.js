@@ -60,12 +60,12 @@ const Payments = () => {
           name="card"
           rules={[
             {
-              required: true,
+              //required: true,
               message: 'Please choose one!',
             },
           ]}
         >
-          <Select label="card" style={{ width: '200px' }}>
+          <Select defaultValue={"visa"} label="card" style={{ width: '200px' }}>
             <Option value="visa">Visa</Option>
             <Option value="mastercard">MasterCard</Option>
             <Option value="citybank">CityBank</Option>
