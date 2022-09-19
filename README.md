@@ -1,57 +1,68 @@
 [![New Relic Experimental header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Experimental.png)](https://opensource.newrelic.com/oss-category/#new-relic-experimental)
 
-# [Relicstaurants] [build badges go here when available]
+# Relicstaurants Application
 
-> The Relicstaurants repository was created so that you can test New Relic observability on a small but real project. You don't have to create a special application just to practice, we did it for you. So go ahead and copy the repository, run it locally and try to implement observability for this project yourself. You can find a tip on what the finished project looks like on the "observability" branch
+> The Relicstaurants repository has been created as a microservice architecture environment so that you can test New Relic observability on a lightweight project. You can copy or fork the repository, run it locally, and implement observability yourself. 
 
+## Requirements
+In order to spin up this application locally on your device, you will need the following software:  
+
+* A free account with [New Relic](https://newrelic.com)
+* [Git](https://github.com/git-guides/install-git) - You can verify installation with `git –version`
+* [Node.js & Node Package Manager (NPM)](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) - You can verify installation with `node -v` and `npm -v`
+* [Xcode (Mac only)](https://developer.apple.com/xcode/) - You can verify installation with `xcode-select -p`
+* [Make (Windows only)](https://linuxhint.com/run-makefile-windows/) - You can verify installation with `make -v`
+
+*Note: the above verification commands should be ran in Terminal on Mac or Command Prompt on Windows*
 ## Installation
+1. From a new Terminal or Command Prompt window, clone this repository using Git `git clone https://github.com/Bijesse/Relicstaurants`
+2. Navigate into your new workspace using `cd Relicstaurants`
+3. Run `make install` if this is your first time spinning up this application
+4. Run `make run`
 
-```make
- make install
-```
+After successfully completing the installation process above, your new application will be running at [localhost:3000](http://localhost:3000/) 
 
-## Getting Started
 
-```make
- make run
-```
+## New Relic APM Instrumentation
+This application is comprised of 3 microservices [restaurantService](restaurantService/newrelic.js), [menuService](menuService/newrelic.js), [checkoutService](checkoutService/newrelic.js). In order to monitor and observe data properly, each service will need to be instrumented with the New Relic APM agent. Let's start with restaurantService:
 
-## Enabling distributed tracing
+1. In your New Relic account, select **add data** and locate APM for [Node.js](https://one.newrelic.com/marketplace?account=3617221&duration=1800000&state=8e76f453-269a-ac05-0db9-431a2e82ad73)
+2. Install the agent via **On a host (without PM2)**
+3. Follow the first 5 steps provided on the "Add your Node.js application data" page. Be sure to.. `cd` into the correct directory before installing the agent, add your New Relic Ingest License key to line 16 of the `newrelic.js` file, and add `require('newrelic');` to the first line of the index.js file.
+4. Repeat the 3 steps above for menuService and checkoutService.
 
-To enable distributed tracing for the backend parts of this application it is required to add your New Relic License key to the following files:
+Make several orders in the Relicstaurants app running at localhost:3000 and check the pre-built dashboards for data being observed by New Relic.
 
-- [Checkout Service](checkoutService/newrelic.js#L16)
-- [Menu Service](menuService/newrelic.js#L16)
-- [Restaurant Service](restaurantService/newrelic.js#L16)
+## New Relic Browser Instrumentation
+The next New Relic agent to be added to this application is Browser. This will allow for you to have full stack observability and make use of the distributed tracing features of New Relic.
 
- Example:
+1. In your New Relic account, select **add data** and locate Browser for [React](https://one.newrelic.com/marketplace?account=3617221&duration=1800000&state=37da579a-b782-d2fb-6656-35acd0b868d0)
+2. Select **Copy/Paste JavaScript Code**
+3. Name your app as a standalone app called "frontend"
+4. Click **enable**. You may ignore the HTML snippet that appears on screen for now and instead close this window. 
+5. Navigate to the Browser Applications being observed in your New Relic account. You should see the service "frontend" listed there. Click on it.
+6. Select "Application settings" view in the "Settings" section on the left *- see screenshot below*
+7. Enable "Cross Origin Resource Sharing(CORS)", "Use newrelic header", "Use trace context headers" and add the backend origins to enable newrelic headers to be passed between the frontend app and the microservices instrumented with APM *- see screenshot below*
+8. Click "Save application settings" *- see screenshot below*
+9. This will redirect you to the main view of the browser app in New Relic. At this point, re-enter the "Application settings" view and copy the HTML snippet available in the first section. The snippet should be then pasted after the meta tag in the public > [index.html](public/index.html) file. 
 
- ![image](readmeData/newrelic_license_key.png)
+ ![image](readmeData/browserAppSettings.png)
 
- To enable distributed tracing for the frontend part it is required to go to [New Relic One](https://one.newrelic.com/) -> once there the user should click on the "Add data" button located on the top right of New Relic One as seen on the screenshot below:
+After completing the steps above, generate some traffic on your application and view the data in New Relic.
 
- ![image](readmeData/nr_one_add_data.png)
+## Simulate application traffic
+This repository includes a simulator file that will make random orders on Relicstaurants so that you do not need to manually generate traffic. Run the simulator  script with the following steps:
 
-Next the user should search for "react" in the search bar available there and click on the react icon visible in results. This should open a view called "Get started with New Relic Browser", in case of react apps it is recommended to select "Copy/Paste Javascript code" in the first section and then assign a name of the app in the third section as seen on the screenshot below:
+1. Install [Python3](https://www.python.org/downloads/) via the Terminal or Command Prompt
+2. Install Selenium and Webdriver via the Terminal or Command Prompt with `pip3 install webdriver-manager selenium`
+3. Navigate into the **simulator** directory
+4. run `simulator.py`
 
-![image](readmeData/get_started_nr_browser.png)
-
-After filling out the app name field and pressing "Enable", a fourth section called "Instrument the agent" will show up along with the instructions on how to add it. At this point in time it is recommended to close the popup window since there's still some things left to prepare. Next the user can proceed to the Browser section of New Relic One where they should see their newly created app available on the list.
-
-Once the user clicks on their app in the list they would see a new view, on it is necessary to go the to the "Application settings" view in the "Settings" section on the left - like shown in the screenshot below:
-
-![image](readmeData/nr_one_browser_view.png)
-
-In this view the user should enable "Cross Origin Resource Sharing(CORS)", "Use newrelic header", "Use trace context headers" and add the backend origins to enable newrelic headers to be passed between the frontend app and the backend ones. Next the user should click "Save application settings". Like on the screenshot below:
-
-![image](readmeData/browser_app_settings.png)
-
-This will redirect the user to the main view of the browser app in New Relic One. At this point the user should re-enter the "Application settings" view and copy the snippet available in the first section of the view.
-The snippet should be then pasted as close to the top of the [index.html](public/index.html#L6) file. After saving that change Distributed Tracing data should be available once the app is running.
+*Note: If you encounter any issues while on a Windows PC, try running this script in a administrator shell.* 
 
 ## Contributing
 
-We encourage your contributions to improve [project name]! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
+We encourage your contributions to improve Relicstaurants! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
 If you have any questions, or to execute our corporate CLA, required if your contribution is on behalf of a company, please drop us an email at opensource@newrelic.com.
 
 ### **A note about vulnerabilities**
@@ -62,6 +73,9 @@ If you believe you have found a security vulnerability in this project or any of
 
 ## License
 
-[Project Name] is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
+The Relicstaurants app has been adapted from the Open source project [FoodMe](https://github.com/IgorMinar/foodme) 
 
-> [If applicable: The [project name] also uses source code from third-party libraries. You can find full details on which libraries are used and the terms under which they are licensed in the third-party notices document.]
+
+Relicstaurants is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
+
+> Relicstaurants also uses source code from third-party libraries. You can find full details on which libraries are used and the terms under which they are licensed in the third-party notices document.
