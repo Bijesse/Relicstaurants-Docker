@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  frontend:
+    container_name: frontend-service-c
+    build:
+      context: .
+    ports:
+      - '3000:3000'
+    restart: always
+  resturant-service:
+    container_name: resturant-service-c
+    build:
+      context: ./restaurantService
+    ports:
+      - '3001:3001'
+    restart: always
+  checkout-service:
+    container_name: checkout-service-c
+    build:
+      context: ./checkoutService
+    ports:
+      - '3002:3002'
+    restart: always
+  menu-service:
+    container_name: menu-service-c
+    build:
+      context: ./menuService
+    ports:
+      - '3003:3003'
+    restart: always
