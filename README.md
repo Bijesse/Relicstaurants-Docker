@@ -10,15 +10,17 @@ In order to spin up this application locally on your device, you will need the f
 * A free account with [New Relic](https://newrelic.com)
 * [Git](https://github.com/git-guides/install-git) - You can verify installation with `git –version`
 * [Node.js & Node Package Manager (NPM)](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) - You can verify installation with `node -v` and `npm -v`
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 * [Xcode (Mac only)](https://developer.apple.com/xcode/) - You can verify installation with `xcode-select -p`
 * [Make (Windows only)](https://linuxhint.com/run-makefile-windows/) - You can verify installation with `make -v`
 
 *Note: the above verification commands should be ran in Terminal on Mac or Command Prompt on Windows*
 ## Installation
-1. From a new Terminal or Command Prompt window, clone this repository using Git `git clone https://github.com/Bijesse/Relicstaurants`
-2. Navigate into your new workspace using `cd Relicstaurants`
-3. Run `make install` if this is your first time spinning up this application
-4. Run `make run`
+1. From a new Terminal or Command Prompt window, clone this repository using Git `git clone https://github.com/Bijesse/Relicstaurants-Docker`
+2. Navigate into your new workspace using `cd Relicstaurants-Docker`
+3. Ensure that Docker Desktop is running on your device 
+4. Run `docker-compose up`
+5. Visit the app at [http://localhost:3000/](http://localhost:3000/)
 
 After successfully completing the installation process above, your new application will be running at [localhost:3000](http://localhost:3000/) 
 
