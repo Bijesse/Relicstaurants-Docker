@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var RestaurantRecord = require('./model').Restaurant;
 var MemoryStorage = require('./storage').Memory;
 
+var API_URL_VALIDATION = '/api/validation';
 var API_URL_ORDER = '/api/checkout';
 
 exports.start = function(PORT, STATIC_DIR, DATA_FILE) {
@@ -34,6 +35,12 @@ exports.start = function(PORT, STATIC_DIR, DATA_FILE) {
     return res.status(201).send({ orderId: Date.now()});
   });
 
+  app.post(API_URL_VALIDATION, function (req, res, _next) {
+    //console.log(req.body);
+    if (req.body.ccnum.length <= 15) {
+      return res.status(401).send({ error: 'CC num invalid' });
+    }
+  });
 
   // start the server
   // read the data from json and start the server
