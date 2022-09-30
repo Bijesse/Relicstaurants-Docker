@@ -8,6 +8,4 @@ COPY . .
 
 EXPOSE 3002
 
-RUN chown -R node /usr/app
-
 CMD ["npm", "start"]
