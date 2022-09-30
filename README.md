@@ -41,7 +41,7 @@ The next New Relic agent to be added to this application is Browser. This will a
 1. In your New Relic account, select **add data** and locate Browser for [React](https://one.newrelic.com/marketplace?account=3617221&duration=1800000&state=37da579a-b782-d2fb-6656-35acd0b868d0)
 2. Select **Copy/Paste JavaScript Code**
 3. Name your app as a standalone app called "frontend"
-4. Click **enable**. You may ignore the HTML snippet that appears on screen for now and instead close this window. 
+4. Click **enable**. You may ignore the HTML snippet that appears on screen for now and instead close the window. 
 5. Navigate to the Browser Applications being observed in your New Relic account. You should see the service "frontend" listed there. Click on it.
 6. Select "Application settings" view in the "Settings" section on the left *- see screenshot below*
 7. Enable "Cross Origin Resource Sharing(CORS)", "Use newrelic header", "Use trace context headers" and add the backend origins (http://lvh.me:3001 http://lvh.me:3002 http://lvh.me:3003 ) to enable newrelic headers to be passed between the frontend app and the microservices instrumented with APM *- see screenshot below*
