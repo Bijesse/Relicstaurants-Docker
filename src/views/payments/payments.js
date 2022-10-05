@@ -95,7 +95,6 @@ const Payments = () => {
             stringMode
             style={{ width: '200px' }}
             onBlur={(event) => {
-              console.log(event.target.value);
               handleOrderValidation(event.target.value);
             }}
           />
