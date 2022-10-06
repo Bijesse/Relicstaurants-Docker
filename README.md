@@ -12,35 +12,20 @@ In order to spin up this application locally on your device, you will need the f
 * [Node.js & Node Package Manager (NPM)](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) - You can verify installation with `node -v` and `npm -v`
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 * [Xcode (Mac only)](https://developer.apple.com/xcode/) - You can verify installation with `xcode-select -p`
-* [Make (Windows only)](https://linuxhint.com/run-makefile-windows/) - You can verify installation with `make -v`
 
 *Note: the above verification commands should be ran in Terminal on Mac or Command Prompt on Windows*
-## Installation
+## Setting up your environment
 1. From a new Terminal or Command Prompt window, clone this repository using Git `git clone https://github.com/Bijesse/Relicstaurants-Docker`
 2. Navigate into your new workspace using `cd Relicstaurants-Docker`
 3. Ensure that Docker Desktop is running on your device 
-4. Run `docker-compose up`
-5. Visit the app at [http://localhost:3000/](http://localhost:3000/)
-
-After successfully completing the installation process above, your new application will be running at [localhost:3000](http://localhost:3000/) 
 
 
-## New Relic APM Instrumentation
-This application is comprised of 3 microservices [restaurantService](restaurantService/newrelic.js), [menuService](menuService/newrelic.js), [checkoutService](checkoutService/newrelic.js). In order to monitor and observe data properly, each service will need to be instrumented with the New Relic APM agent. Let's start with restaurantService:
-
-1. In your New Relic account, select **add data** and locate APM for [Node.js](https://one.newrelic.com/marketplace?account=3617221&duration=1800000&state=8e76f453-269a-ac05-0db9-431a2e82ad73)
-2. Install the agent via **On a host (without PM2)**
-3. Follow the first 5 steps provided on the "Add your Node.js application data" page. Be sure to.. `cd` into the correct directory before installing the agent, add your New Relic Ingest License key to line 16 of the `newrelic.js` file, and add `require('newrelic');` to the first line of the index.js file.
-4. Repeat the 3 steps above for menuService and checkoutService.
-
-Make several orders in the Relicstaurants app running at localhost:3000 and check the pre-built dashboards for data being observed by New Relic.
-
-## New Relic Browser Instrumentation
+## New Relic browser instrumentation
 The next New Relic agent to be added to this application is Browser. This will allow for you to have full stack observability and make use of the distributed tracing features of New Relic.
 
 1. In your New Relic account, select **add data** and locate Browser for [React](https://one.newrelic.com/marketplace?account=3617221&duration=1800000&state=37da579a-b782-d2fb-6656-35acd0b868d0)
 2. Select **Copy/Paste JavaScript Code**
-3. Name your app as a standalone app called "frontend"
+3. Name your app as a standalone app called "r-frontend"
 4. Click **enable**. You may ignore the HTML snippet that appears on screen for now and instead close the window. 
 5. Navigate to the Browser Applications being observed in your New Relic account. You should see the service "frontend" listed there. Click on it.
 6. Select "Application settings" view in the "Settings" section on the left *- see screenshot below*
@@ -48,10 +33,31 @@ The next New Relic agent to be added to this application is Browser. This will a
 8. Click "Save application settings" *- see screenshot below*
 9. This will redirect you to the main view of the browser app in New Relic. At this point, re-enter the "Application settings" view and copy the HTML snippet available in the first section. The snippet should be then pasted after the meta tag in the public > [index.html](public/index.html) file. 
 
- ![image](readmeData/browserAppSettings.png)
+![image](readmeData/browserAppSettings.png)
 
-After completing the steps above, generate some traffic on your application and view the data in New Relic.
+## New Relic APM Instrumentation
+This application is comprised of 3 microservices [restaurantService](restaurantService/newrelic.js), [menuService](menuService/newrelic.js), [checkoutService](checkoutService/newrelic.js). Reference of this can be found in the [docker-compose.yml](docker-compose.yml) file.
 
+
+## Start your application
+Now that all 4 services are ready for New Relic instrumentation, follow the steps below to run this applicaiton in Docker and view the data in New Relic.
+
+1. export your [New Relic license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#ingest-keys) using the following command *Note: be sure to update the command to include your ingest license key.*
+```shell
+export NEW_RELIC_API_KEY=<your_license_key>
+```
+2. Build and run the app using Docker:
+```shell
+docker-compose up
+```
+
+
+
+
+
+
+
+After completing the steps above, generate some traffic on your application and 
 ## Simulate application traffic
 This repository includes a simulator file that will make random orders on Relicstaurants so that you do not need to manually generate traffic. Run the simulator  script with the following steps:
 
