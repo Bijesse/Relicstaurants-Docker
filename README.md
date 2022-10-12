@@ -64,7 +64,7 @@ This repository includes a simulator file that will make random orders on Relics
 1. Install [Python3](https://www.python.org/downloads/) via the Terminal or Command Prompt
 2. Install Selenium and Webdriver via the Terminal or Command Prompt with `pip3 install webdriver-manager selenium`
 3. Navigate into the **simulator** directory
-4. run `simulator.py`
+4. run `python3 simulator.py`
 
 *Note: If you encounter any issues while on a Windows PC, try running this script in a administrator shell.* 
 
