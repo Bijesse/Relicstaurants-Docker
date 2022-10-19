@@ -40,7 +40,7 @@ This application is comprised of 3 microservices [restaurantService](restaurantS
 
 
 ## Start your application
-Now that all 4 services are ready for New Relic instrumentation, follow the steps below to run this applicaiton in Docker and view the data in New Relic.
+Now that all 4 services are ready for New Relic instrumentation, follow the steps below to run this application in Docker and view the data in New Relic.
 
 1. export your [New Relic license key](https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#ingest-keys) using the following command *Note: be sure to update the command to include your ingest license key.*
 ```shell
