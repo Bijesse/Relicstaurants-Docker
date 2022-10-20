@@ -60,6 +60,12 @@ const SingleRestaurant = () => {
     },
   ];
 
+  let menuItems = data?.menuItems || [];
+  menuItems.forEach((item) => {
+    item.key = item.name;
+    return item;
+  });
+
   return (
     <ViewWrapper>
       <RestaurantHead>
@@ -77,7 +83,7 @@ const SingleRestaurant = () => {
       <Divider />
       <h4>Menu</h4>
       <Table
-        dataSource={data?.menuItems}
+        dataSource={menuItems}
         columns={columns}
         style={{ width: '100%' }}
       />

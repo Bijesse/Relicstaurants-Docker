@@ -81,6 +81,7 @@ const Restaurants = () => {
           filteredData?.map((item) => {
             return (
               <RestaurantCard
+                key={`key-${item.id}`}
                 name={item.name}
                 id={item.id}
                 score={item.rating}
