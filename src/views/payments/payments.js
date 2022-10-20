@@ -15,10 +15,11 @@ const Payments = () => {
   const [form] = Form.useForm();
   const { Option } = Select;
 
-    const handleOrderValidation = async (payload) => {
+  //added this function
+  const handleOrderValidation = async (payload) => {
     await axios.post('http://lvh.me:3002/api/validation', { ccnum: payload });
   };
-  
+
   const handleOrderSending = async (payload) => {
     await axios.post('http://lvh.me:3002/api/checkout', payload);
   };
@@ -82,10 +83,7 @@ const Payments = () => {
               required: true,
               message: 'Is required',
             },
-            {
-              len: 16,
-              message: 'Must be 16 characters long',
-            },
+            //Note from Developer: Don't forget to add a character length rule
           ]}
         >
           <InputNumber
