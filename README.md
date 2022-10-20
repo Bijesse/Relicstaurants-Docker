@@ -60,6 +60,12 @@ This repository includes a simulator file that will make random orders on Relics
 
 *Note: If you encounter any issues while on a Windows PC, try running this script in a administrator shell.* 
 
+## Challenges
+This application includes two bugs. Can you locate and resolve them using New Relic? 
+
+* The first bug is related to slowness on the frontend of this application
+* The 2nd bug is an error that commonly occurs. If you run `simulator2.py` you should see this error occur after a few random tests are completed
+
 ## Contributing
 
 We encourage your contributions to improve Relicstaurants! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
