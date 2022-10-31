@@ -6,8 +6,12 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.action_chains import ActionChains
+
+
 browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 url = "http://localhost:3000/"
+
+random_cc = [1234567890123456,1231231231231231,6582134902356478,123456789]
 while True:
     browser.get(url)
     time.sleep(1)
@@ -16,9 +20,13 @@ while True:
     time.sleep(1)
     button=browser.find_element(By.CSS_SELECTOR, ".ant-btn-primary").click()
     time.sleep(2)
-    restaurant = browser.find_elements(By.CSS_SELECTOR, "div.sc-hHLeRK.giEsIV")
-    random.choice(restaurant).click()
+    # find element using css selector
+    links = browser.find_elements(By.CSS_SELECTOR, 'main > div > div > div')
+    time.sleep(1)
+    random.choice(links).click()
     time.sleep(2)
+    # exit('OK')
+
     menu = browser.find_elements(By.ID, "menuItem")
     orderItem = random.sample(menu,3)
     for o in orderItem:
@@ -30,15 +38,15 @@ while True:
     pay = browser.find_element(By.ID, "pay").click()
     time.sleep(2)
     num = ''
-    for i in range(16):
-        num = num + str(random.randint(0,9))
-    cardNum = browser.find_element(By.ID, "cardNumber").send_keys(num)
+    
+    cardNum = browser.find_element(By.ID, "cardNumber").send_keys(random.choice(random_cc))
     time.sleep(1)
     cvs = ''
+
     for i in range(3):
-        cvs = cvs + str(random.randint(0,9))
+        cvs = cvs + str(random.randint(1,9))
     cardCvc = browser.find_element(By.ID, "csv")
     cardCvc.send_keys(cvs)
     time.sleep(2)
-    placeOrder = browser.find_element(By.CSS_SELECTOR, "#root > div > main > div > form > div:nth-child(4) > div > div > div > button").click()
+    placeOrder = browser.find_element(By.CSS_SELECTOR, 'main button[type="submit"]').click()
     time.sleep(2)

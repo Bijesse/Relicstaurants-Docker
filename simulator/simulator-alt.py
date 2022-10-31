@@ -20,13 +20,11 @@ while True:
     time.sleep(1)
     button=browser.find_element(By.CSS_SELECTOR, ".ant-btn-primary").click()
     time.sleep(2)
-    # find element using css selector
-    links = browser.find_elements(By.CSS_SELECTOR, 'main > div > div > div')
-
-    random.choice(links).click()
+    restaurant = browser.find_elements(By.CSS_SELECTOR, "div.sc-hHLeRK.giEsIV")
+    time.sleep(1)
+    random.choice(restaurant).click()
     time.sleep(2)
-    # exit('OK')
-
+    
     menu = browser.find_elements(By.ID, "menuItem")
     orderItem = random.sample(menu,3)
     for o in orderItem:
@@ -42,11 +40,10 @@ while True:
     cardNum = browser.find_element(By.ID, "cardNumber").send_keys(random.choice(random_cc))
     time.sleep(1)
     cvs = ''
-
     for i in range(3):
-        cvs = cvs + str(random.randint(0,9))
+        cvs = cvs + str(random.randint(1,9))
     cardCvc = browser.find_element(By.ID, "csv")
     cardCvc.send_keys(cvs)
     time.sleep(2)
-    placeOrder = browser.find_element(By.CSS_SELECTOR, 'main button[type="submit"]').click()
+    placeOrder = browser.find_element(By.CSS_SELECTOR, "#root > div > main > div > form > div:nth-child(4) > div > div > div > button").click()
     time.sleep(2)
