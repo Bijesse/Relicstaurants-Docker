@@ -29,11 +29,11 @@ The next New Relic agent to be added to this application is Browser. This will a
 4. Click **enable**. You may ignore the HTML snippet that appears on screen for now and instead close the window. 
 5. Navigate to the Browser Applications being observed in your New Relic account. You should see the service "r-frontend" listed there. Click on it.
 6. Select "Application settings" view in the "Settings" section on the left *- see screenshot below*
-7. Enable "Cross Origin Resource Sharing(CORS)", "Use newrelic header", "Use trace context headers" and add the backend origins ( http://lvh.me:3001 http://lvh.me:3002 http://lvh.me:3003 ) to enable newrelic headers to be passed between the frontend app and the microservices instrumented with APM *- see screenshot below*
+7. Enable "Cross Origin Resource Sharing(CORS)", "Use newrelic header", "Use trace context headers" and add the backend origins ( http://platzi.nru.to:3001 http://platzi.nru.to:3002 http://platzi.nru.to:3003 ) to enable newrelic headers to be passed between the frontend app and the microservices instrumented with APM *- see screenshot below*
 8. Click "Save application settings" *- see screenshot below*
 9. This will redirect you to the main view of the browser app in New Relic. At this point, re-enter the "Application settings" view and copy the HTML snippet available in the first section. The snippet should be then pasted after the meta tag in the public > [index.html](public/index.html) file. 
 
- ![image](readmeData/browserAppSettings.png)
+ ![image](readmeData/browserSettings.png)
 
 ## Docker Installation
 At this point, you are ready to run your application in Docker.
@@ -64,7 +64,7 @@ This repository includes a simulator file that will make random orders on Relics
 This application includes two bugs. Can you locate and resolve them using New Relic? 
 
 * The first bug is related to slowness on the frontend of this application
-* The 2nd bug is an error that commonly occurs. If you run `simulator2.py` you should see this error occur after a few random tests are completed
+* The 2nd bug is an error that commonly occurs. If you run `python3 simulator.py` from inside the simulator directory you should see this error occur after a few random tests are completed
 
 ## Contributing
 
