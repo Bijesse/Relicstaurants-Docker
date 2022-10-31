@@ -1,8 +1,9 @@
+var newrelic = require('newrelic');
 var express = require('express');
 var fs = require('fs');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var newrelic = require('newrelic');
+
 
 var RestaurantRecord = require('./model').Restaurant;
 var MemoryStorage = require('./storage').Memory;
