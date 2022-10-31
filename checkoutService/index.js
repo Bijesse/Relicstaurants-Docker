@@ -62,7 +62,7 @@ exports.start = function (PORT, STATIC_DIR, DATA_FILE) {
     });
 
     app.listen(PORT, function () {
-      console.log('Go to http://localhost:' + PORT + '/');
+      console.log('http://localhost:' + PORT + '/');
     });
   });
 
