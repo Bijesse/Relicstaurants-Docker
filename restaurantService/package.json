@@ -14,11 +14,6 @@
     "scripts": {
         "start": "node ./start.js"
     },
-    "lint-staged": {
-        "src/**/*.{js,jsx,ts,tsx,json}": [
-            "prettier --write"
-        ]
-    },
     "husky": {
         "hooks": {
             "pre-commit": "lint-staged"
@@ -26,9 +21,6 @@
     },
     "devDependencies": {
         "@babel/eslint-parser": "^7.17.0",
-        "@babel/preset-react": "^7.16.7",
-        "eslint-config-prettier": "^8.5.0",
-        "eslint-plugin-prettier": "^4.0.0",
-        "prettier": "^2.6.2"
+        "@babel/preset-react": "^7.16.7"
     }
 }
